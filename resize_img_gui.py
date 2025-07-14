@@ -24,7 +24,7 @@ preview_frame.pack(pady=10)
 
 
 
-top_image = Button(preview_frame, text="No Image", width=200,cursor="hand2", height=200, bg="#ddd", relief="sunken",command=lambda : image_instance.display_image(int(resized_width.get()),int(resized_height.get())) )
+top_image = Button(preview_frame, text="No Image", width=200,cursor="hand2", height=200, bg="#ddd", relief="sunken",command=lambda : image_instance.display_image(resized_width.get(),resized_height.get()))
 top_image.pack()
 
 def set_top_image(path):

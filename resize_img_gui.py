@@ -12,17 +12,19 @@ root.configure(bg="#208090")
 current_img = None
 current_img_path = None
 
-resized_width = StringVar(root, "0")
-resized_height = StringVar(root, "0")
+resized_width = StringVar(root, "500")
+resized_height = StringVar(root, "500")
 current_path = StringVar(root,"")
 
+image_instance=ResizeImage("./assets/default.jpg")
 # ------------------ Top: Image Preview ------------------ #
 preview_frame = Frame(root)
 preview_frame.pack(pady=10)
 
-top_image = Label(preview_frame, textvariable=current_path, bg="#ddd", relief="sunken")
-top_image.pack()
-top_image = Label(preview_frame, text="No Image", width=200, height=200, bg="#ddd", relief="sunken")
+
+
+
+top_image = Button(preview_frame, text="No Image", width=200,cursor="hand2", height=200, bg="#ddd", relief="sunken",command=lambda : image_instance.display_image(int(resized_width.get()),int(resized_height.get())) )
 top_image.pack()
 
 def set_top_image(path):
@@ -50,6 +52,7 @@ def open_file_dialog():
     if filepath:
         set_top_image(filepath)
         show_resize_controls()
+        image_instance.src=filepath
         print("Selected file:", filepath)
 
 browser_btn = Button(controls_frame, text="Browse Image", width=20, bg='gray', fg='white', font=('Arial', 10), command=open_file_dialog)
@@ -73,7 +76,8 @@ def save_resized_image():
     try:
         width = int(resized_width.get())
         height = int(resized_height.get())
-        ResizeImage(current_img_path).resize_image(width, height)
+        image_instance.src=current_img_path
+        image_instance.resize_image(width,height)
         print(f"Image saved at {width}x{height}")
     except Exception as e:
         print("Error resizing:", e)

@@ -22,6 +22,11 @@ class ResizeImage:
             cv2.waitKey(0)
             cv2.destroyAllWindows()
          
+    def display_image(self,new_width,new_height):
+        img=cv2.imread(self.src)
+        resized_img=cv2.resize(img,(new_width,new_height), interpolation= cv2.INTER_LINEAR)
+        cv2.imshow("Resize Image Tool",resized_img)
+        cv2.waitKey(0)
             
    
     
